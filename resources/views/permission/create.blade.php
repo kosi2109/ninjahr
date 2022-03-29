@@ -13,11 +13,17 @@
                     <form action="/permission/store" method="POST" enctype="multipart/form-data" >
                     @csrf
                         <x-form.input name="name" />
-                    
+                        
                         <div class="mb-3">
                             <button type="submit" class="btn btn-primary">Create</button>
+                            <input name="add_more" type="submit" class="btn btn-primary" value="Create & Add More" >
                         </div>
                         <div>
+                            @if(session("success"))
+                                <h6 class="my-2 text-success">
+                                    {{ session("success") }}
+                                </h6>
+                            @endif
                             <ul>
                                 @if($errors->any())
                                     {!! implode('', $errors->all('<li class="text-danger">:message</li>')) !!}

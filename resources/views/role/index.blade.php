@@ -6,8 +6,11 @@
     <div class="py-4">
 
     <div class="mb-3">
+        
         <a href="/role/create" class="btn btn-sm btn-primary"><i class="fa-solid fa-circle-plus"></i> Create Role</a>
+        <a href="/permission/create" class="btn btn-sm btn-primary"><i class="fa-solid fa-circle-plus"></i> Create Permission</a>
     </div>
+
     <div class="card px-2 px-md-5 py-3 shadow">
         <h2>Roles</h2>
         <table class="table DataTable display nowrap" style="width:100%">
@@ -15,6 +18,7 @@
                 <tr>
                     <th>Name</th>
                     <th class="no-sort">Action</th>
+                    <th>Permission</th>
                 </tr>
             </thead>
         </table>
@@ -36,9 +40,17 @@
                     columns: [
                         { data: 'name', name: 'name' },
                         { data: 'action', name: 'action' },
+                        { data: 'permissions', name: 'permissions' , class : 'text-center' },
                     ],
                     order: [[ 0, 'desc' ]],
-                    
+                    columnDefs: [
+                            {
+                                "targets": [ 2 , 1 ],
+                                "searchable": false
+                            },
+                            { orderable: false, "targets": [2,1] },
+
+                    ],
                 });
 
                 $(document).on('click','.delete',function(e){

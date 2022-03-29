@@ -47,6 +47,9 @@ class DepartmentController extends Controller
         $newDar = new Department();
         $newDar->title = $department['title'];
         $newDar->save();
+        if(request('add_more')){
+            return redirect("/department/create")->with("success","User has been successfully created .");
+        }
         return redirect("/department")->with("success","User has been successfully created .");
     }
 

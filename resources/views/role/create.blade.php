@@ -13,11 +13,34 @@
                     <form action="/role/store" method="POST" enctype="multipart/form-data" >
                     @csrf
                         <x-form.input name="name" />
-                    
+
+                        <div class="mb-3">
+                            <label class="form-label">Permissions</label>
+                            <div class="row">
+                                @foreach ($permissions as $permission)
+                                <div class="col-md-4">
+                                    <div class="form-check">
+                                        <input name="permissions[]" class="form-check-input" type="checkbox" value="{{$permission->name}}" id="checkbox_{{$permission->id}}">
+                                        <label class="form-check-label" for="checkbox_{{$permission->id}}">
+                                            {{$permission->name}}
+                                        </label>
+                                    </div>
+                                </div>
+                                @endforeach
+                            </div>
+                        </div>
+
+
                         <div class="mb-3">
                             <button type="submit" class="btn btn-primary">Create</button>
+                            <input name="add_more" type="submit" class="btn btn-primary" value="Create & Add More" >
                         </div>
                         <div>
+                            @if(session("success"))
+                                <h6 class="my-2 text-success">
+                                    {{ session("success") }}
+                                </h6>
+                            @endif
                             <ul>
                                 @if($errors->any())
                                     {!! implode('', $errors->all('<li class="text-danger">:message</li>')) !!}
@@ -33,13 +56,7 @@
     
     <x-slot name='script'>
         <script>
-            const img = document.getElementById('profile_img')
-            const preview_img = document.getElementById('preview_img')
-            img.addEventListener('change',function(){
-                if (img.files.length > 0){
-                    preview_img.innerHTML = `<img src=${URL.createObjectURL(event.target.files[0])} alt="preview" style="max-width:100%;height:auto;" />`
-                }
-            })
+
 
         </script>
     </x-slot>

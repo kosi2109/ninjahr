@@ -44,6 +44,9 @@ class PermissionController extends Controller
         $permission = new Permission();
         $permission->name = $formData['name'];
         $permission->save();
+        if(request('add_more')){
+            return redirect("/permission/create")->with("success","Permission has been successfully created .");
+        }
         return redirect("/permission")->with("success","Permission has been successfully created .");
     }
 

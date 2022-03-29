@@ -87,6 +87,9 @@ class EmployeeController extends Controller
         $user["password"] = Hash::make(request("password"));
         $user["profile_img"] = $image;
         User::create($user);
+        if(request('add_more')){
+            return redirect("/employee/create")->with("success","User has been successfully created .");
+        }
         return redirect("/employee")->with("success","User has been successfully created .");
     }
 

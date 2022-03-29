@@ -66,6 +66,7 @@
                         </div>
                         <div class="mb-3">
                             <button type="submit" class="btn btn-primary">Create</button>
+                            <input name="add_more" type="submit" class="btn btn-primary" value="Create & Add More" >
                         </div>
                         <div>
                             <ul>
