@@ -40,6 +40,10 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
+        'biomateric_attedance'=>[
+            'driver' => 'session',
+            'provider' => 'biomateric_attedances',
+        ]
     ],
 
     /*
@@ -61,10 +65,13 @@ return [
 
     'providers' => [
         'users' => [
-            'driver' => 'eloquent',
+            'driver' => 'eloquent-webauthn',
             'model' => App\Models\User::class,
         ],
-
+        'biomateric_attedances' => [
+            'driver' => 'eloquent-webauthn',
+            'model' => App\Models\BiomatericAttedance::class,
+        ],
         // 'users' => [
         //     'driver' => 'database',
         //     'table' => 'users',
@@ -89,6 +96,12 @@ return [
     'passwords' => [
         'users' => [
             'provider' => 'users',
+            'table' => 'password_resets',
+            'expire' => 60,
+            'throttle' => 60,
+        ],
+        'biomateric_attedances' => [
+            'provider' => 'biomateric_attedances',
             'table' => 'password_resets',
             'expire' => 60,
             'throttle' => 60,

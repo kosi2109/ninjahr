@@ -10,6 +10,7 @@
                     <div class="mb-3">
                         <h2>Create Employee</h2>
                     </div>
+                    
                     <form action="/employee/store" method="POST" enctype="multipart/form-data" >
                     @csrf
                         <x-form.input name="employee_id" />
@@ -44,15 +45,31 @@
                         <x-form.input name="address" type="textarea" />
                         
                         <div class="mb-3">
-                            <label for="department" class="form-label">Gender</label>
+                            <label for="department" class="form-label">Department</label>
                             <select name="department_id" id="department" class="form-select" aria-label="Default select example">
-                                <option selected>Department</option>
+                           
                                 @foreach ($departments as $department)
-                                    <option {{ $department->id == old('department_id') ?'selected' : ''}} value="{{$department->id}}">{{$department->title}}</option>
+                                    @if (old('department_id'))
+                                        <option {{ $department->id == old('department_id') ?'selected' : ''}} value="{{$department->id}}">{{$department->title}}</option>
+                                        
+                                    @endif
+                                        <option value="{{$department->id}}">{{$department->title}}</option>
                                 @endforeach
                                 
                               </select>
-                            </div>
+                        
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="role" class="form-label">Role</label>
+                            <select name="role_id[]" id="role" class="form-select" aria-label="Default select example" multiple>
+                                
+                                @foreach ($roles as $role)
+                                    
+                                    <option {{ old('role_id') in_array($role->id,old('role_id')) ? 'select' : '' }} value="{{$role->id}}">{{$role->name}}</option>
+                                @endforeach    
+                            </select>
+                        </div>
                         
                         <x-form.input name="date_of_join" type="date" />
 
@@ -69,6 +86,11 @@
                             <input name="add_more" type="submit" class="btn btn-primary" value="Create & Add More" >
                         </div>
                         <div>
+                            @if(session("success"))
+                                <h6 class="my-2 text-success">
+                                    {{ session("success") }}
+                                </h6>
+                            @endif
                             <ul>
                                 @if($errors->any())
                                     {!! implode('', $errors->all('<li class="text-danger">:message</li>')) !!}
@@ -91,7 +113,11 @@
                     preview_img.innerHTML = `<img src=${URL.createObjectURL(event.target.files[0])} alt="preview" style="max-width:100%;height:auto;" />`
                 }
             })
-
+            $(document).ready(function() {
+                $('#role').select2({
+                    theme: 'bootstrap-5'
+                });
+            });
         </script>
     </x-slot>
 </x-app-layout>

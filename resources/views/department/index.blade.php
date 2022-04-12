@@ -4,10 +4,12 @@
         Departments
     </x-slot>
     <div class="py-4">
-
-    <div class="mb-3">
-        <a href="/department/create" class="btn btn-sm btn-primary"><i class="fa-solid fa-circle-plus"></i> Create Department</a>
-    </div>
+        @can('create_employee')
+        <div class="mb-3">
+            <a href="/department/create" class="btn btn-sm btn-primary"><i class="fa-solid fa-circle-plus"></i> Create Department</a>
+        </div>
+        @endcan
+    
     <div class="card px-2 px-md-5 py-3 shadow">
         <h2>All Departments</h2>
         <table class="table DataTable display nowrap" style="width:100%">

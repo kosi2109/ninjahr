@@ -1,5 +1,5 @@
 @props(['title'])
-<nav class="navbar shadow navbar-light bg-light fixed-top">
+<nav class="navbar shadow navbar-light bg-light fixed-top" style="height: 60px">
   <div class="container d-flex justify-content-between align-items-center">
       @if (request()->is('/'))
      

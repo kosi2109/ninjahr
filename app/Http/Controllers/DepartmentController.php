@@ -3,10 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Department;
-use App\Models\User;
-use Carbon\Carbon;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rule;
 use Yajra\Datatables\Datatables;
 
@@ -74,7 +70,7 @@ class DepartmentController extends Controller
     }
 
 
-    public function destory(Department $department){
+    public function destroy(Department $department){
         $department->delete();
         return 'success';
     }

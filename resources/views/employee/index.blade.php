@@ -4,10 +4,11 @@
         Employee
     </x-slot>
     <div class="py-4">
-
+    @can('create_employee')
     <div class="mb-3">
         <a href="/employee/create" class="btn btn-sm btn-primary"><i class="fa-solid fa-circle-plus"></i> Create Employee</a>
     </div>
+    @endcan
     <div class="card px-2 px-md-5 py-3 shadow">
         <h2>All Employee</h2>
         <table class="table DataTable display nowrap" style="width:100%">
@@ -17,6 +18,7 @@
                     <th>Employee Id</th>
                     <th>Email</th>
                     <th>Department</th>
+                    <th>Role</th>
                     <th>Present</th>
                     <th class="no-sort">Action</th>
                     <th>Update At</th>
@@ -43,18 +45,19 @@
                         { data: 'employee_id', name: 'employee_id' },
                         { data: 'email', name: 'email' },
                         { data: 'department_name', name: 'department_name' },
+                        { data: 'role_name', name: 'role_name' },
                         { data: 'is_present', name: 'is_present' },
                         { data: 'action', name: 'action' },
                         { data: 'updated_at', name: 'updated_at' },
                     ],
-                    order: [[ 6, 'desc' ]],
+                    order: [[ 7, 'desc' ]],
                     columnDefs: [
                             {
-                                "targets": [ 6 ],
+                                "targets": [ 7 ],
                                 "visible": false,
                                 "searchable": false
                             },
-                            { orderable: false, "targets": [4,5] },
+                            { orderable: false, "targets": [6,5] },
 
                     ],
                     

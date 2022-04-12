@@ -20,7 +20,7 @@
                                     @foreach ($permissions as $permission)
                                     <div class="col-md-4">
                                         <div class="form-check">
-                                            <input name="permissions[]" class="form-check-input" type="checkbox" value="{{$permission->name}}" id="checkbox_{{$permission->id}}" {{in_array($permission->id,$role->permissions->pluck('name')->toArray()) ? 'checked' : ''}} />
+                                            <input name="permissions[]" class="form-check-input" type="checkbox" value="{{$permission->name}}" id="checkbox_{{$permission->id}}" {{in_array($permission->name,$role->permissions->pluck('name')->toArray()) ? 'checked' : ''}} />
                                             <label class="form-check-label" for="checkbox_{{$permission->id}}">
                                                 {{$permission->name}}
                                             </label>

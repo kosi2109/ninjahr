@@ -71,7 +71,7 @@ class PermissionController extends Controller
     }
 
 
-    public function destory(Permission $permission){
+    public function destroy(Permission $permission){
         $permission->delete();
         return 'success';
     }

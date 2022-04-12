@@ -9,7 +9,7 @@
     <!-- CSS only -->
     
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-    
+    <link rel="stylesheet" href="{{ asset('css/bootstrap-pin.css') }}">
     {{-- datatable --}}
     <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/dataTables.bootstrap5.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.9/css/responsive.dataTables.min.css">
@@ -19,9 +19,11 @@
 
     <link rel="stylesheet" href="{{asset('css/app.css')}}">
     <link rel="stylesheet" href="{{asset('css/datatables/datatables.mark.css')}}">
-
+    {{-- select2 --}}
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.2.0/dist/select2-bootstrap-5-theme.min.css" />
 </head>
-<body>
+<body class="bg-light">
     <div class="wrapper">
         <x-sidebar/>
         <div id="content" class="container-fluid">
@@ -45,10 +47,20 @@
     <script src="{{asset('js/datatable/dataTables.rowReorder.min.js')}}"></script>
     <script src="{{asset('js/datatable/datatables.mark.js')}}"></script>
     <script src="{{asset('js/datatable/jquery.mark.min.js')}}"></script>
+    <script src="{{asset('js/qr-scanner.umd.min.js')}}"></script>
 
     <script src="https://cdn.datatables.net/1.11.5/js/dataTables.bootstrap5.min.js"></script>
-
+    {{-- sweetaleart --}}
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    
+    {{-- select2 --}}
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    
+    <script src="{{ asset('vendor/larapass/js/larapass.js') }}"></script>
+    
+    
+    <script src="{{ asset('js/bootstrap-pin.js') }}"></script>
+    
     {{$script}}
     <script>
         $(function ($){

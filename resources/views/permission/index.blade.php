@@ -4,10 +4,11 @@
         Permission
     </x-slot>
     <div class="py-4">
-
+    @can('create_permission')
     <div class="mb-3">
         <a href="/permission/create" class="btn btn-sm btn-primary"><i class="fa-solid fa-circle-plus"></i> Create Permission</a>
     </div>
+    @endcan
     <div class="card px-2 px-md-5 py-3 shadow">
         <h2>Permission</h2>
         <table class="table DataTable display nowrap" style="width:100%">

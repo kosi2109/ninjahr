@@ -4,13 +4,17 @@
         Roles
     </x-slot>
     <div class="py-4">
-
+    
     <div class="mb-3">
-        
+        @can('create_role')
         <a href="/role/create" class="btn btn-sm btn-primary"><i class="fa-solid fa-circle-plus"></i> Create Role</a>
+        @endcan
+        @can('create_permission')
         <a href="/permission/create" class="btn btn-sm btn-primary"><i class="fa-solid fa-circle-plus"></i> Create Permission</a>
+        @endcan
     </div>
-
+    
+    
     <div class="card px-2 px-md-5 py-3 shadow">
         <h2>Roles</h2>
         <table class="table DataTable display nowrap" style="width:100%">

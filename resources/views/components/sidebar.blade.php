@@ -18,21 +18,71 @@
         </div>
     </div>
 
-    <ul class="list-unstyled">
+    <ul class="list-unstyled components">
         <li>
             <a href="/"><i class="fa-solid fa-house"></i> Home</a>
         </li>
+        @can('view_company')
+        <li>
+            <a href="/company/1/show"><i class="fa-solid fa-building"></i> Company</a>
+        </li>
+        @endcan
+        @can('view_employee')
         <li>
             <a href="/employee"><i class="fa-solid fa-user-group"></i> Employee</a>
         </li>
+        @endcan
+
+        @can('view_department')
         <li>
             <a href="/department"><i class="fa-solid fa-code-branch"></i> Departments</a>
         </li>
+        @endcan
+
+        @can('view_role')
         <li>
             <a href="/role"><i class="fa-solid fa-unlock"></i> Role</a>
         </li>
+        @endcan
+
+        @can('view_permission')
         <li>
             <a href="/permission"><i class="fa-solid fa-circle-exclamation"></i> Permission</a>
+        </li>
+        @endcan
+        
+
+        @can('view_attendance')
+        <li>
+            <a href="/attendance"><i class="fa-solid fa-list-check"></i> Attendance</a>
+        </li>
+        @endcan
+
+        @can('view_attendance')
+        <li>
+            <a href="/attendance/overview"><i class="fa-solid fa-chart-simple"></i> Attendance Overview</a>
+        </li>
+        @endcan
+
+        @can('view_salary')
+        <li>
+            <a href="/salary"><i class="fa-solid fa-badge-dollar"></i> Salary Mgt</a>
+        </li>
+        @endcan
+
+        @can('view_payroll')
+        <li>
+            <a href="/attendance/overview"><i class="fa-solid fa-chart-pie"></i> Payroll</a>
+        </li>
+        @endcan
+        
+    </ul>
+    <ul class="list-unstyled px-2">
+        <li>
+            <form action="/logout" method="POST">
+                @csrf
+                <button style="width: 100%" class="btn btn-dark">Logout</button>
+            </form>
         </li>
     </ul>
 </nav>
