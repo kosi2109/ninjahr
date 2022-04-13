@@ -18,7 +18,7 @@ class AttendanceSeeder extends Seeder
     {
         $users = User::all();
         foreach($users as $user){
-            $period = new CarbonPeriod('2021-04-12','2022-04-12');
+            $period = new CarbonPeriod('2021-02-01','2021-03-01');
             foreach($period as $p){
                 if ($p->format('D') != 'Sun' && $p->format('D') != 'Sat'){
                     $check_in = rand(8,10);
@@ -26,8 +26,10 @@ class AttendanceSeeder extends Seeder
                     $attendance = new Attendance();
                     $attendance->user_id = $user->id;
                     $attendance->biomateric_attedance_id = 1;
-                    $attendance->check_in = $check_in < 10 ? '0' .$check_in. ':00' : $check_in. ':00';
-                    $attendance->check_out = $check_out .':15';;
+                    // $attendance->check_in = $check_in < 10 ? '0' .$check_in. ':00' : $check_in. ':00';
+                    // $attendance->check_out = $check_out .':15';;
+                    $attendance->check_in = '09:00';
+                    $attendance->check_out = '16:15';
                     $attendance->date = $p->format('Y-m-d');
                     $attendance->save();
                 }

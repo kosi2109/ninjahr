@@ -1,11 +1,10 @@
 <x-app-layout>
     
     <x-slot name="title">
-        Attendances Overview
+        Attendances & Payroll
     </x-slot>
-    
     <div class="card shadow mt-4 mb-2 p-3">
-        <h4 class="text-muted">Overview</h4>
+        <h4 class="text-muted">Attendances & Payroll</h4>
         <div class="d-flex justify-content-between">
             <div style="font-size:0.8rem">
                 <p class="me-2"><i class="fa-solid fa-circle-check text-success"></i> - Present</p>
@@ -40,6 +39,13 @@
                 </div>
             </div>
         </div>
+    </div>
+    <div class="card shadow mb-2 p-3">
+        <div class="table-responsive" id="payrollTable">
+            
+        </div>
+    </div>
+    <div class="card shadow mb-2 p-3">
         <div class="table-responsive" id="tableContainer">
             
         </div>
@@ -61,21 +67,30 @@
 
     <x-slot name="script">
         <script>
-            function getTable (month,year){
-                    
-                    $.ajax({
-                        url : `/my-attendance/overview-table?month=${month}&year=${year}`,
-                        type : 'GET',
-                        success : function(data){
-                            $('#tableContainer').html(data)
-                        }
-                    })
-
+            function getTable (month,year){    
+                $.ajax({
+                    url : `/my-attendance/overview-table?month=${month}&year=${year}`,
+                    type : 'GET',
+                    success : function(data){
+                        $('#tableContainer').html(data)
+                    }
+                })
             };
+
+            function getPayrollTable (month,year){
+                $.ajax({
+                    url : `/my-payroll-table?&month=${month}&year=${year}`,
+                    type : 'GET',
+                    success : function(data){
+                        $('#payrollTable').html(data)
+                    }
+                })
+            }
 
            $(document).ready(
                $(function(){
-                    
+                    let month = $('#month').val()
+                    let year = $('#year').val()
                     var table = $('.DataTable').DataTable({
                         ajax: `/my-attendance/database/ssd`,
                         method: "GET",
@@ -89,12 +104,14 @@
                         
                     });
                     getTable({{now()->format('m')}},{{now()->format('Y')}})
-                    
+                    getPayrollTable(month,year)
+
                     $('#searchBtn').click(function(){
-                        const month = $('#month').val()
-                        const year = $('#year').val()
+                        month = $('#month').val()
+                        year = $('#year').val()
                         table.ajax.url(`/my-attendance/database/ssd?month=${month}&year=${year}`).load()
                         getTable(month,year);
+                        getPayrollTable(month,year)
                     })
                })
            )

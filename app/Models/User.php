@@ -10,6 +10,7 @@ use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
 use DarkGhostHunter\Larapass\Contracts\WebAuthnAuthenticatable;
 use DarkGhostHunter\Larapass\WebAuthnAuthentication;
+use Spatie\Permission\Models\Role;
 
 class User extends Authenticatable implements WebAuthnAuthenticatable
 {
@@ -40,6 +41,11 @@ class User extends Authenticatable implements WebAuthnAuthenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+
+    public function salary(){
+        return $this->hasMany(Salary::class,'user_id','id');
+    }
 
     public function department(){
         return $this->belongsTo(Department::class,'department_id');

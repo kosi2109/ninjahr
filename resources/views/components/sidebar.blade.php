@@ -72,7 +72,7 @@
 
         @can('view_payroll')
         <li>
-            <a href="/attendance/overview"><i class="fa-solid fa-chart-pie"></i> Payroll</a>
+            <a href="/payroll"><i class="fa-solid fa-chart-pie"></i> Payroll</a>
         </li>
         @endcan
         

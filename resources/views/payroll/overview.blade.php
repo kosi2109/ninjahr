@@ -1,12 +1,11 @@
 <x-app-layout>
     
     <x-slot name="title">
-        Attendances Overview
+        Payroll
     </x-slot>
     
     <div class="card shadow my-4 p-3">
-        
-        <h4 class="text-muted">Overview</h4>
+        <h4 class="text-muted">Payroll</h4>
         <div class="d-flex justify-content-between">
             <div style="font-size:0.8rem">
                 <p class="me-2"><i class="fa-solid fa-circle-check text-success"></i> - Present</p>
@@ -56,7 +55,7 @@
                     const year = $('#year').val()
                     const employee_id = $('#employee_id').val()
                     $.ajax({
-                        url : `/attendance/overview-table?employee_id=${employee_id}&month=${month}&year=${year}`,
+                        url : `/payroll-table?employee_id=${employee_id}&month=${month}&year=${year}`,
                         type : 'GET',
                         success : function(data){
                             $('#tableContainer').html(data)
@@ -65,8 +64,9 @@
                 }
             $(document).ready(function(){
 
-                getTable();
+                getTable()
                 $('#searchBtn').click(function(){
+                    
                     getTable()
                 })
             })

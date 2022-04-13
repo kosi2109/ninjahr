@@ -13,6 +13,7 @@ use App\Http\Controllers\Auth\WebAuthnRegisterController;
 use App\Http\Controllers\Auth\WebAuthnLoginController;
 use App\Http\Controllers\BiomatericAttedanceController;
 use App\Http\Controllers\MyAttendanceController;
+use App\Http\Controllers\PayrollController;
 use App\Http\Controllers\SalaryController;
 
 /*
@@ -109,7 +110,7 @@ Route::middleware("auth")->group(function(){
      Route::get('my-attendance',[MyAttendanceController::class,"overView"]);
      Route::get('my-attendance/overview-table',[MyAttendanceController::class,"overViewTable"]);
      Route::get('my-attendance/database/ssd',[MyAttendanceController::class,"ssd"]);
-
+     Route::get('my-payroll-table',[MyAttendanceController::class,"payrollTable"]);
 
      // salary
     Route::get('salary',[SalaryController::class,"index"])->middleware('permission:view_salary');
@@ -119,6 +120,11 @@ Route::middleware("auth")->group(function(){
     Route::post('salary/{salary}/update',[SalaryController::class,"update"])->middleware('permission:edit_salary');
     Route::delete('salary/{salary}/delete',[SalaryController::class,"destroy"])->middleware('permission:delete_salary');
     Route::get('salary/database/ssd',[SalaryController::class,"ssd"])->middleware('permission:view_salary|create_salary|edit_salary|delete_salary');
+    
+     // payroll
+    Route::get('payroll',[PayrollController::class,"payroll"])->middleware('permission:view_payroll');
+    Route::get('payroll-table',[PayrollController::class,"payrollTable"])->middleware('permission:view_payroll');
+
 });
 
 
