@@ -13,8 +13,11 @@ use App\Http\Controllers\Auth\WebAuthnRegisterController;
 use App\Http\Controllers\Auth\WebAuthnLoginController;
 use App\Http\Controllers\BiomatericAttedanceController;
 use App\Http\Controllers\MyAttendanceController;
+use App\Http\Controllers\MyProjectController;
 use App\Http\Controllers\PayrollController;
+use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\SalaryController;
+use App\Http\Controllers\TaskController;
 
 /*
 |--------------------------------------------------------------------------
@@ -124,6 +127,30 @@ Route::middleware("auth")->group(function(){
      // payroll
     Route::get('payroll',[PayrollController::class,"payroll"])->middleware('permission:view_payroll');
     Route::get('payroll-table',[PayrollController::class,"payrollTable"])->middleware('permission:view_payroll');
+    
+     //my-project
+     Route::get('my-project',[MyProjectController::class,"index"]);
+     Route::get('my-project/{id}',[MyProjectController::class,"show"]);
+     Route::get('my-project/database/ssd',[MyProjectController::class,"ssd"]);
+     
+    //project
+    Route::get('project',[ProjectController::class,"index"])->middleware('permission:view_project');
+    Route::get('project/create',[ProjectController::class,"create"])->middleware('permission:create_project');
+    Route::get('project/{project}',[ProjectController::class,"show"])->middleware('permission:view_project');
+    Route::post('project/store',[ProjectController::class,"store"])->middleware('permission:create_project');
+    Route::get('project/{project}/edit',[ProjectController::class,"edit"])->middleware('permission:edit_project');
+    Route::post('project/{project}/update',[ProjectController::class,"update"])->middleware('permission:edit_project');
+    Route::delete('project/{project}/delete',[ProjectController::class,"destroy"])->middleware('permission:delete_project');
+    Route::get('project/database/ssd',[ProjectController::class,"ssd"])->middleware('permission:view_project|create_project|edit_project|delete_project');
+
+
+     //task
+    Route::post('task/store',[TaskController::class,"store"]);
+    Route::get('project/{id}/tasks',[TaskController::class,"tasks"]);
+    Route::post('task/{task}/update',[TaskController::class,"update"]);
+    Route::post('task/{task}/delete',[TaskController::class,"destroy"]);
+    Route::post('task/{task}/move',[TaskController::class,"move"]);
+    Route::post('task/sort',[TaskController::class,"sort"]);
 
 });
 
@@ -136,8 +163,8 @@ Route::get('login-option',[ProfileController::class,"loginOption"]);
 Route::get('bio-login',[BiomatericAttedanceController::class,'login']);
 Route::post('bio-login',[BiomatericAttedanceController::class,'store']);
 Route::get('check-users',[BiomatericAttedanceController::class,'checkUsers'])->middleware('bio');
-Route::post('check-in-out',[BiomatericAttedanceController::class,'check_in_out'])->middleware('auth')->middleware('permission:view_check_in_out');
-Route::get('check-in-out',[BiomatericAttedanceController::class,'attendance'])->middleware('auth')->middleware('permission:view_check_in_out');
+Route::post('check-in-out',[BiomatericAttedanceController::class,'check_in_out'])->middleware('auth');
+Route::get('check-in-out',[BiomatericAttedanceController::class,'attendance'])->middleware('auth');
 
 
 

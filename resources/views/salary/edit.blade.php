@@ -3,7 +3,7 @@
         Edit Salary
     </x-slot>
     
-    <div class="row my-5">
+    <div class="row py-4">
         <div class="col-md-6 mx-auto">
             <div class="card shadow-sm">
                 <div class="card-body">

@@ -17,6 +17,8 @@ class ProfileController extends Controller
     public function show(){
         $user = auth()->user();
         $biomateric = DB::table('web_authn_credentials')->where('user_id',$user->id)->get();
+
+        
         return view('employee.show',[   
             'user'=> $user,
             'biomateric' => $biomateric

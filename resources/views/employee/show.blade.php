@@ -2,8 +2,10 @@
     <x-slot name="title">
         {{$user->name}}
     </x-slot>
+    <div class="row py-4">
 
-    <div class="position-relative card my-5 p-3 shadow">
+    
+    <div class="position-relative card p-3 shadow">
         @if (auth()->user()->id == $user->id)
         <div class="position-absolute" style="right:2%" >
             <form action="/logout" method="POST">
@@ -97,7 +99,7 @@
             </div>
         </div>
     </div>
-    
+</div>
     <x-slot name="script">
         <!-- Registering credentials -->
         <script>

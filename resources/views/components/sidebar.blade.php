@@ -35,7 +35,7 @@
 
         @can('view_department')
         <li>
-            <a href="/department"><i class="fa-solid fa-code-branch"></i> Departments</a>
+            <a href="/department"><i class="fa-solid fa-network-wired"></i> Departments</a>
         </li>
         @endcan
 
@@ -66,13 +66,19 @@
 
         @can('view_salary')
         <li>
-            <a href="/salary"><i class="fa-solid fa-badge-dollar"></i> Salary Mgt</a>
+            <a href="/salary"><i class="fa-solid fa-coins"></i> Salary Mgt</a>
         </li>
         @endcan
 
         @can('view_payroll')
         <li>
-            <a href="/payroll"><i class="fa-solid fa-chart-pie"></i> Payroll</a>
+            <a href="/payroll"><i class="fa-solid fa-chart-pie"></i> Payrolls</a>
+        </li>
+        @endcan
+
+        @can('view_project')
+        <li>
+            <a href="/project"><i class="fa-solid fa-diagram-project"></i> Projects</a>
         </li>
         @endcan
         
