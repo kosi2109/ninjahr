@@ -29,7 +29,7 @@
                     @foreach ($period as $p)
                         @php
                         $attendance = collect($attendances)->where('user_id',$employee->id)->where('date',$p->format('Y-m-d'))->first();
-                            if($p->format('Y-m-d') > now()->format('Y-m-d')){
+                            if($p->format('Y-m-d') >= now()->format('Y-m-d')){
                                 
                             }elseif($p->format('D') == 'Sun' || $p->format('D') == 'Sat'){
                                 
@@ -81,6 +81,8 @@
                                         }
                                     }
                                 }
+                            }else{
+                                $leave = $leave +1;
                             }
                         @endphp
                         

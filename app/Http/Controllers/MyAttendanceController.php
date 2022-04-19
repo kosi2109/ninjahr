@@ -7,7 +7,6 @@ use App\Models\Company;
 use App\Models\User;
 use Carbon\Carbon;
 use Carbon\CarbonPeriod;
-use Illuminate\Http\Request;
 use Yajra\DataTables\Facades\DataTables;
 
 class MyAttendanceController extends Controller

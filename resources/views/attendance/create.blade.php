@@ -39,6 +39,9 @@
                                     {{ session("error") }}
                                 </h6>
                             @endif
+                            @if($errors->any())
+                                {!! implode('', $errors->all('<li class="text-danger">:message</li>')) !!}
+                            @endif
                         </div>
                     </form>
                 </div>

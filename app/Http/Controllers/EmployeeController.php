@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\EmployeeRequest;
+use App\Http\Requests\EmployeeUpdateRequest;
 use App\Models\Department;
 use App\Models\User;
 use Carbon\Carbon;
@@ -84,32 +86,26 @@ class EmployeeController extends Controller
         ]);
     }
 
-    public function store(){
-       
+    public function store(EmployeeRequest $request){
+        
         $image = null;
         if(request()->hasFile('profile_img')){
             $image = request()->file('profile_img')->store('employee');
         }
         
-        $user = request()->validate([
-            "employee_id" => ["required",Rule::unique('users','employee_id')],
-            "name" => ["required"],
-            "password" => ["required"],
-            "phone" => ["required",Rule::unique('users','phone')],
-            "email" => ["required",Rule::unique('users','email')],
-            "nrc_number" => ["required",Rule::unique('users','nrc_number')],
-            "gender" => ["required"],
-            "birthday" => ["required"],
-            "address" => ["required"],
-            "department_id" => ["required",Rule::exists('departments','id')],
-            "date_of_join" => ["required"],
-            "is_present" => ["required"],
-        ]);
-        $user["password"] = Hash::make(request("password"));
-        $user["profile_img"] = $image;
-        $newUser = User::create($user);
-        $newUser->syncRoles(array_values(request('role_id')));
-        if(request('add_more')){
+        $request->password = Hash::make($request->password);
+        
+        $newUser = new User();
+        foreach ($request->all() as $key=>$value){
+            if($key != "role_id" && $key != "_token"){
+                $newUser->$key = $value;
+            }
+        }
+        $newUser->profile_img = $image;
+        $newUser->syncRoles($request->role_id);
+        
+        $newUser->save();
+        if($request->add_more){
             return redirect("/employee/create")->with("success","User has been successfully created .");
         }
         return redirect("/employee")->with("success","User has been successfully created .");
@@ -125,33 +121,24 @@ class EmployeeController extends Controller
         ]);
     }
     
-    public function update(User $user){
+    public function update(EmployeeUpdateRequest $request,User $user){
         if(request()->hasFile('profile_img')){
             $image = request()->file('profile_img')->store('employee');
-            $user["profile_img"] = $image;
+            $user->profile_img = $image;
         }
-        $formData = request()->validate([
-            "employee_id" => ["required",Rule::unique('users','employee_id')->ignore($user->id)],
-            "name" => ["required"],
-            "phone" => ["required",Rule::unique('users','phone')->ignore($user->id)],
-            "email" => ["required",Rule::unique('users','email')->ignore($user->id)],
-            "nrc_number" => ["required",Rule::unique('users','nrc_number')->ignore($user->id)],
-            "gender" => ["required"],
-            "birthday" => ["required"],
-            "address" => ["required"],
-            "department_id" => ["required",Rule::exists('departments','id')],
-            "date_of_join" => ["required"],
-            "is_present" => ["required"]
-        ]);
         
-        if(isset(request()->password)){
-            $user->password = Hash::make(request()->password) ;
+        if(isset($request->password)){
+            $user->password = Hash::make($request->password) ;
         };
         
-        foreach($formData as $key=>$value){
-            $user->$key = $value;
+        foreach($request->all() as $key=>$value){
+            if($key != "role_id" && $key != "_token" && $key != "profile_img" && $key != "password" ){
+                $user->$key = $value;
+            }
         };
-        $user->syncRoles(array_values(request('role_id')));
+
+        $user->syncRoles($request->role_id);
+        
         $user->save();
         return redirect('/employee')->with("success","Employee has been successfully updated .");
     }

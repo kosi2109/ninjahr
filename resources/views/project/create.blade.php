@@ -14,10 +14,7 @@
                     @csrf
                         <x-form.input name="title"/>
                         
-                        <div class="mb-3">
-                            <label for="description"  class="form-label">Description</label>
-                            <textarea class="form-control" name="description" id="description" cols="30" rows="5"></textarea>
-                        </div>
+                        <x-form.input name="description" type="textarea" />
                         
                         <x-form.input type="date" name="start_date" label="Start Date" />
 
@@ -84,6 +81,9 @@
                                 <h6 class="my-2 text-danger">
                                     {{ session("error") }}
                                 </h6>
+                            @endif
+                            @if($errors->any())
+                                {!! implode('', $errors->all('<li class="text-danger">:message</li>')) !!}
                             @endif
                         </div>
                     </form>

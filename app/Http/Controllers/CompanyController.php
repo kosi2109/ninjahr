@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CompanyRequest;
 use App\Models\Company;
 use Illuminate\Http\Request;
 
@@ -19,18 +20,9 @@ class CompanyController extends Controller
         ]);
     }
 
-    public function update(Company $company){
-        $formData = request()->validate([
-            "company_name" => "required",
-            "company_phone" => "required",
-            "company_email" => "required",
-            "office_start_time" => "required",
-            "office_end_time" => "required",
-            "break_start_time" => "required",
-            "break_end_time" => "required"
-        ]);
+    public function update(CompanyRequest $request,Company $company){
 
-        foreach($formData as $key=>$value){
+        foreach($request as $key=>$value){
             $company->$key = $value;
         };
 

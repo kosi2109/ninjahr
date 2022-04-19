@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\AttendanceRequest;
 use App\Models\Attendance;
 use App\Models\BiomatericAttedance;
 use App\Models\Company;
@@ -53,24 +54,21 @@ class AttendanceController extends Controller
         return view('attendance.create');
     }
 
-    public function store(){
-        if(Carbon::now()->format('D') == 'Tue' || Carbon::now()->format('D') == 'Sat'){
+    public function store(AttendanceRequest $request){
+        if(Carbon::now()->format('D') == 'Sun' || Carbon::now()->format('D') == 'Sat'){
             return back()->with("error","Today is offday");
         }
-        $attendance = request()->validate([
-            "employee_id" => ["required"],
-            "date" => ["required"],
-        ]);
-        $employee = User::where('employee_id',$attendance['employee_id'])->first();
+        
+        $employee = User::where('employee_id',$request->employee_id)->first();
 
         if(!$employee){
             return back()->with("error","User Not Found");
         }
 
         $machine = BiomatericAttedance::first();
-        $exist_attendance = Attendance::where(function($query) use($attendance,$employee) {
+        $exist_attendance = Attendance::where(function($query) use($request,$employee) {
                         $query->where('user_id',$employee->id)
-                        ->where('date', $attendance['date']);
+                        ->where('date', $request->date);
                         })->first();
 
         
@@ -81,13 +79,13 @@ class AttendanceController extends Controller
         $newDar = new Attendance();
         $newDar->biomateric_attedance_id = $machine->id;
         $newDar->user_id = $employee->id;
-        $newDar->date = $attendance['date'];
+        $newDar->date = $request->date;
 
         if (request('check_in')){
-            $newDar->check_in = request('check_in');
+            $newDar->check_in = $request->check_in;
         }
         if (request('check_out')){
-            $newDar->check_out = request('check_out');
+            $newDar->check_out = $request->check_out;
 
         }
         $newDar->save();
@@ -103,22 +101,18 @@ class AttendanceController extends Controller
         ]);
     }
     
-    public function update(Attendance $attendance){
-        $formData = request()->validate([
-            "employee_id" => ["required"],
-            "date" => ["required"],
-        ]);
-
-        $employee = User::where('employee_id',$formData['employee_id'])->first();
+    public function update(AttendanceRequest $request,Attendance $attendance){
+    
+        $employee = User::where('employee_id',$request->employee_id)->first();
         $machine = BiomatericAttedance::first();
 
         if(!$employee){
             return back()->with("error","User Not Found");
         }
 
-        $exist_attendance = Attendance::where(function($query) use($formData,$employee) {
+        $exist_attendance = Attendance::where(function($query) use($request,$employee) {
             $query->where('user_id',$employee->id)
-            ->where('date', $formData['date']);
+            ->where('date', $request->date);
         })->first();
 
 
@@ -129,13 +123,13 @@ class AttendanceController extends Controller
     
         $attendance->biomateric_attedance_id = $machine->id;
         $attendance->user_id = $employee->id;
-        $attendance->date = $formData['date'];
+        $attendance->date = $request->date;
         
         if (request('check_in')){
-            $attendance->check_in = request('check_in');
+            $attendance->check_in = $request->check_in;
         }
         if (request('check_out')){
-            $attendance->check_out = request('check_out');
+            $attendance->check_out = $request->check_out;
         }
         $attendance->save();
         return redirect('/attendance')->with("success","Role has been successfully updated .");

@@ -3,7 +3,7 @@
         Create Salary
     </x-slot>
     
-    <div class="row my-5">
+    <div class="row py-4">
         <div class="col-md-6 mx-auto">
             <div class="card shadow-sm">
                 <div class="card-body">
@@ -33,6 +33,9 @@
                                 <h6 class="my-2 text-danger">
                                     {{ session("error") }}
                                 </h6>
+                            @endif
+                            @if($errors->any())
+                                {!! implode('', $errors->all('<li class="text-danger">:message</li>')) !!}
                             @endif
                         </div>
                     </form>

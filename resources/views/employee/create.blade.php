@@ -23,6 +23,8 @@
 
                         <x-form.input name="nrc_number" />
                         
+                        <x-form.input name="pin" maxlength="6" min="6" />
+
                         <x-form.input name="password" type="password" />
                         
                         <x-form.input name="profile_img" type="file" id="profile_img" />
@@ -66,7 +68,7 @@
                                 
                                 @foreach ($roles as $role)
                                     
-                                    <option {{ old('role_id') in_array($role->id,old('role_id')) ? 'select' : '' }} value="{{$role->id}}">{{$role->name}}</option>
+                                    <option {{ old('role_id') && in_array($role->id,old('role_id')) ? 'select' : '' }} value="{{$role->id}}">{{$role->name}}</option>
                                 @endforeach    
                             </select>
                         </div>

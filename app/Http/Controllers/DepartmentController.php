@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\DepartmentRequest;
 use App\Models\Department;
 use Illuminate\Validation\Rule;
 use Yajra\Datatables\Datatables;
@@ -34,14 +35,9 @@ class DepartmentController extends Controller
         return view('department.create');
     }
 
-    public function store(){
-        
-        $department = request()->validate([
-            "title" => ["required",Rule::unique('users','employee_id')],
-        ]);
-        
+    public function store(DepartmentRequest $request){
         $newDar = new Department();
-        $newDar->title = $department['title'];
+        $newDar->title = $request->title;
         $newDar->save();
         if(request('add_more')){
             return redirect("/department/create")->with("success","User has been successfully created .");
@@ -56,12 +52,8 @@ class DepartmentController extends Controller
         ]);
     }
     
-    public function update(Department $department){
-        $formData = request()->validate([
-            "title" => ["required",Rule::unique('departments','title')->ignore($department->id)],
-        ]);
-        
-        foreach($formData as $key=>$value){
+    public function update(DepartmentRequest $request , Department $department){
+        foreach($request as $key=>$value){
             $department->$key = $value;
         };
         

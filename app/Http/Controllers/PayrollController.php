@@ -3,15 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Attendance;
-use App\Models\payroll;
-use App\Models\BiomatericAttedance;
 use App\Models\Company;
 use App\Models\User;
 use Carbon\Carbon;
 use Carbon\CarbonPeriod;
-use Illuminate\Http\Request;
-use Illuminate\Validation\Rule;
-use Yajra\DataTables\Facades\DataTables;
+
 
 class PayrollController extends Controller
 {

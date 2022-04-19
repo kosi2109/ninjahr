@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\SalaryRequest;
 use App\Models\Salary;
 use App\Models\User;
-use Illuminate\Http\Request;
 use Yajra\DataTables\Facades\DataTables;
 
 class SalaryController extends Controller
@@ -37,24 +37,14 @@ class SalaryController extends Controller
         return view('salary.create');
     }
 
-    public function store(){
-        
-        $formData = request()->validate([
-            "employee_id" => ["required"],
-            "month" => ["required"],
-            "ammount" => ["required","numeric"],
-        ]);
-        
-        $user = User::where('employee_id',$formData['employee_id'])->first();
+    public function store(SalaryRequest $request){
 
-        if (!$user){
-            return back()->with('error','User with this employee not found .');
-        }
+        $user = User::where('employee_id',$request->employee_id)->first();
 
         $salary = new Salary();
         $salary->user_id = $user->id;
-        $salary->month = $formData['month'];
-        $salary->ammount = $formData['ammount'];
+        $salary->month = $request->month;
+        $salary->ammount = $request->ammount;
         $salary->save();
         if(request('add_more')){
             return redirect("/salary/create")->with("success","salary has been successfully created .");
@@ -71,22 +61,12 @@ class SalaryController extends Controller
         ]);
     }
     
-    public function update(Salary $salary){
-        $formData = request()->validate([
-            "employee_id" => ["required"],
-            "month" => ["required"],
-            "ammount" => ["required","numeric"],
-        ]);
-        
-        $user = User::where('employee_id',$formData['employee_id'])->first();
-
-        if (!$user){
-            return back()->with('error','User with this employee not found .');
-        }
+    public function update(SalaryRequest $request,Salary $salary){
+        $user = User::where('employee_id',$request->employee_id)->first();
         
         $salary->user_id = $user->id;
-        $salary->month = $formData['month'];
-        $salary->ammount = $formData['ammount'];
+        $salary->month = $request->month;
+        $salary->ammount = $request->ammount;
         $salary->save();
 
         return redirect('/salary')->with("success","salary has been successfully updated .");

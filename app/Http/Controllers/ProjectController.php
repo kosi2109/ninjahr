@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ProjectRequest;
 use App\Models\Project;
 use App\Models\ProjectLeader;
 use App\Models\ProjectMember;
 use App\Models\User;
-use Illuminate\Http\Request;
 use Yajra\DataTables\Facades\DataTables;
 use Illuminate\Support\Str;
 
@@ -86,43 +86,37 @@ class ProjectController extends Controller
         ]);
     }
 
-    public function store(){
-
-        $formData = request()->validate([
-            "title" => "required",
-            "description" => "required",
-            "start_date" => "required",
-            "deadline" => "required",
-            "priority" => "required",
-            "status" => "required",
-        ]);
-        
+    public function store(ProjectRequest $request){
         $images = [];
         if(request()->hasFile('images')){
-            foreach (request()->file('images') as $image){
+            
+            foreach ($request->images as $image){
                 $images[] = $image->store('project/images');
-            }
-        }
-        
-        $files = [];
-        if(request()->hasFile('files')){
-            foreach (request()->file('files') as $file){
-                $files[] = $file->store('project/files');
             }
             
         }
         
-        $project = new Project();
-        foreach ($formData as $key=>$value){
-            $project->$key = $value;
+        $files = [];
+        if(request()->hasFile('files')){
+            
+            foreach (request()->file('files') as $file){
+                $files[] = $file->store('project/files');
+            }
         }
+        
+        $project = new Project();
+        foreach ($request->all() as $key=>$value){
+            if($key != "_token" && $key != "leaders" && $key != "members" && $key != "add_more" && $key != "images" && $key != "files"  ){
+                $project->$key = $value;
+            }
+        }
+        
         $project->images = $images;
         $project->files = $files;
-        
         $project->save();
 
-        $project->leaders()->sync(request('leaders'));
-        $project->members()->sync(request('members'));
+        $project->leaders()->sync($request->leaders);
+        $project->members()->sync($request->members);
 
         if(request('add_more')){
             return redirect("/project/create")->with("success","project has been successfully created .");
@@ -138,27 +132,20 @@ class ProjectController extends Controller
         ]);
     }
     
-    public function update(Project $project){
-        $formData = request()->validate([
-            "title" => "required",
-            "description" => "required",
-            "start_date" => "required",
-            "deadline" => "required",
-            "priority" => "required",
-            "status" => "required",
-        ]);
+    public function update(ProjectRequest $request,Project $project){
+    
         
-
-        $images = [];
         if(request()->hasFile('images')){
+            $images = [];
             foreach (request()->file('images') as $image){
                 $images[] = $image->store('project/images');
             }
             $project->images = $images;
         }
         
-        $files = [];
+        
         if(request()->hasFile('files')){
+            $files = [];
             foreach (request()->file('files') as $file){
                 $files[] = $file->store('project/files');
             }
@@ -166,8 +153,10 @@ class ProjectController extends Controller
         }
 
 
-        foreach ($formData as $key=>$value){
-            $project->$key = $value;
+        foreach ($request->all() as $key=>$value){
+            if($key != "_token" && $key != "leaders" && $key != "members" && $key != "add_more" && $key != "images" && $key != "files"  ){
+                $project->$key = $value;
+            }
         }
 
         $project->save();

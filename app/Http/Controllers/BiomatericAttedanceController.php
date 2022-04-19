@@ -24,7 +24,7 @@ class BiomatericAttedanceController extends Controller
         if(Auth::guard('biomateric_attedance')->attempt(['machine_id'=>$formData['machine_id'],'password'=>$formData['password']])){
             return redirect('/check-users');
         }else{
-            dd('unsuccess');
+            return back()->with('error','Someting Went Wrong');
         }
     }
 
@@ -39,7 +39,7 @@ class BiomatericAttedanceController extends Controller
     }
 
     public function check_in_out(){
-        if(Carbon::now()->format('D') == "Tue" || Carbon::now()->format('D') == "Sat"){
+        if(Carbon::now()->format('D') == "Sun" || Carbon::now()->format('D') == "Sat"){
             return ['error'=> 'Today is offday'];
         } 
 

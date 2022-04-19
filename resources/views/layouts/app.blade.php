@@ -66,6 +66,7 @@
 
     <script src="{{ asset('js/bootstrap-pin.js') }}"></script>
     
+    
     {{$script}}
     <script>
         $(function ($){
