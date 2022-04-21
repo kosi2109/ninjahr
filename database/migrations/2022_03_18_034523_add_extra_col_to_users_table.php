@@ -20,7 +20,7 @@ class AddExtraColToUsersTable extends Migration
             $table->enum('gender',['male','female'])->nullable();
             $table->text('address')->nullable();
             $table->string('employee_id')->nullable();
-            $table->foreignId('department_id');
+            $table->foreignId('department_id')->nullable();
             $table->date('date_of_join')->nullable();
             $table->boolean('is_present')->nullable();
         });
