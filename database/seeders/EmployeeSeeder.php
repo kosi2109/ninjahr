@@ -36,7 +36,18 @@ class EmployeeSeeder extends Seeder
             $delete_role->id,
             $delete_permission->id,
         ]);
-        $user = User::factory()->create();
+        $user = new User([
+            'name' => "Si Thu Htet",
+            'email' => "sithuhtet.kosi21@gmail.com",
+            'password' => bcrypt('asdqwefr'), // password
+            'phone' => "09781903836",
+            'nrc_number' => "0/abc(N)09888",
+            'birthday' => "2000-09-21",
+            'gender' => "male",
+            'address' => "address",
+            'employee_id' => "e_0001",
+            'pin' => "111111",
+        ]);
         $user->syncRoles($role->id);
     }
 }
