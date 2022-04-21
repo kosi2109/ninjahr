@@ -46,7 +46,7 @@ Route::post('webauthn/login', [WebAuthnLoginController::class, 'login'])
 Route::middleware("auth")->group(function(){
     // profile
     Route::delete('biodata/{id}/delete',[ProfileController::class,"bioDestroy"]);
-    Route::get('/',[ProfileController::class,"show"])->middleware('permission:view_profile');
+    Route::get('/',[ProfileController::class,"show"]);
     Route::get('profile/bio-data',[ProfileController::class,"bioData"])->middleware('permission:view_profile');
 
     // employee
