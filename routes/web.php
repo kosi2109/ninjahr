@@ -44,12 +44,9 @@ Route::post('webauthn/login', [WebAuthnLoginController::class, 'login'])
 
 
 Route::middleware("auth")->group(function(){
-    Route::get('/', function () {
-        return view('index');
-    });
     // profile
     Route::delete('biodata/{id}/delete',[ProfileController::class,"bioDestroy"]);
-    Route::get('profile',[ProfileController::class,"show"])->middleware('permission:view_profile');
+    Route::get('/',[ProfileController::class,"show"])->middleware('permission:view_profile');
     Route::get('profile/bio-data',[ProfileController::class,"bioData"])->middleware('permission:view_profile');
 
     // employee
@@ -155,14 +152,15 @@ Route::middleware("auth")->group(function(){
 });
 
 
-Route::get('login-option',[ProfileController::class,"loginOption"]);
+Route::get('login-option',[ProfileController::class,"loginOption"])->middleware('guest');
 
 
 // for biomateric machine
 
-Route::get('bio-login',[BiomatericAttedanceController::class,'login']);
-Route::post('bio-login',[BiomatericAttedanceController::class,'store']);
+Route::get('bio-login',[BiomatericAttedanceController::class,'login'])->middleware('guest');
+Route::post('bio-login',[BiomatericAttedanceController::class,'store'])->middleware('guest');
 Route::get('check-users',[BiomatericAttedanceController::class,'checkUsers'])->middleware('bio');
+Route::post('password-check',[BiomatericAttedanceController::class,'passwordCheck'])->middleware('bio');
 Route::post('check-in-out',[BiomatericAttedanceController::class,'check_in_out'])->middleware('auth');
 Route::get('check-in-out',[BiomatericAttedanceController::class,'attendance'])->middleware('auth');
 

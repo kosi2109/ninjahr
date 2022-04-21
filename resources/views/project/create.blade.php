@@ -43,7 +43,7 @@
                             <label class="form-label" for="status">Status</label>
                             <select name="status" id="status" class="form-control">
                                 <option value="pending">Pending</option>
-                                <option value="in_progess">Inprogress</option>
+                                <option value="in_progress">Inprogress</option>
                                 <option value="complete">Complete</option>
                             </select>
                         </div>

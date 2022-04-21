@@ -1,9 +1,9 @@
 <!-- Sidebar  -->
 <nav id="sidebar" class="fixed-top bg-secondary shadow">
     <div class="sidebar-header d-flex justify-content-between align-items-center bg-dark">
-        <h5>Ninja HR</h5>
+        <h4 class="fs-6 text-left p-0 m-0">The Popup Company Ltd</h4>
         <button type="button" id="sidebarCollapseClose" style="border: none;outline:none;background-color:inherit">
-            <i class="fa-solid fa-xmark text-white fs-3"></i>
+            <i class="fa-solid fa-xmark text-white fs-5"></i>
         </button>
     </div>
 
@@ -66,7 +66,7 @@
 
         @can('view_salary')
         <li>
-            <a href="/salary"><i class="fa-solid fa-coins"></i> Salary Mgt</a>
+            <a href="/salary"><i class="fa-solid fa-coins"></i> Salary</a>
         </li>
         @endcan
 

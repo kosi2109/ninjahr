@@ -44,7 +44,7 @@
                     ajax: '/project/database/ssd',
                     method: "GET",
                     columns: [
-                        { data: 'title', name: 'title' },
+                        { data: 'title', name: 'title' ,class : 'text-wrap' },
                         { data: 'description', name: 'description' , class : 'text-wrap' },
                         { data: 'leaders', name: 'leaders',class : 'text-center'},
                         { data: 'members', name: 'members', class : 'text-center'},
@@ -90,7 +90,7 @@
                                 table.ajax.reload();
                                 Swal.fire(
                                 'Deleted!',
-                                'User has been deleted.',
+                                'Project has been deleted.',
                                 'success'
                                 )
                             });

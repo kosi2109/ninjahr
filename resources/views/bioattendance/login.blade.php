@@ -4,7 +4,6 @@
         <form method="POST">
             @csrf
             <h4 class="text-center text-lg mb-3">Login For Biometric Machine</h4>
-            <!-- Email Address -->
             <x-form.input name='machine_id' />
             <x-form.input name='password' />
             <button class="btn btn-primary">Next</button>
@@ -15,6 +14,6 @@
 
     </div>
 
-
+    <x-slot name="script"> </x-slot>
 
 </x-guest-layout>

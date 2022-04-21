@@ -61,7 +61,7 @@
                         <h5>Files</h5>
                         <div class="row">
                             @foreach ($project->files as $file)
-                                <div class="col-md-2 col-3">
+                                <div class="col-3">
                                     <a href="/storage/{{$file}}" target="_blank">
                                         <div class="border text-center p-2 rounded-2 text-primary fs-3">
                                             <i class="fa-solid fa-file-pdf"></i>

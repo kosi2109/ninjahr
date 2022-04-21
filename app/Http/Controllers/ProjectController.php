@@ -46,7 +46,10 @@ class ProjectController extends Controller
             return $img;
         })
         ->editColumn('description',function($each){
-            return Str::limit($each->description,100);
+            return Str::limit($each->description,150);
+        })
+        ->editColumn('title',function($each){
+            return Str::limit($each->description,50);
         })
         ->editColumn('priority',function($each){
             if($each->priority == 'high'){

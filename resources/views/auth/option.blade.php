@@ -1,6 +1,6 @@
 <x-guest-layout>
     <x-slot name="title">Login</x-slot>
-    <div class="col-md-4 m-auto card px-5 py-3 shadow" style="height: 55vh">
+    <div class="col-md-4 m-auto card px-5 py-3 shadow " style="height: 55vh">
         <x-application-logo/> 
         <ul class="nav nav-pills mb-3 nav-justified" id="pills-tab" role="tablist">
             
@@ -45,19 +45,22 @@
     </div>
 
 
-    <!-- Login users -->
-<script>
-    const login = (event) => {
-        event.preventDefault();
-        new Larapass({
-            login: 'webauthn/login',
-            loginOptions: 'webauthn/login/options'
-        }).login({
-            phone: document.getElementById('phone').value
-        }).then(response => alert('Authentication successful!'))
-          .catch(error => console.log(error))
-    }
+    <x-slot name="script">
 
-    document.getElementById('login-form').addEventListener('submit', login)
-</script>
+        <!-- Login users -->
+    <script>
+        const login = (event) => {
+            event.preventDefault();
+            new Larapass({
+                login: 'webauthn/login',
+                loginOptions: 'webauthn/login/options'
+            }).login({
+                phone: document.getElementById('phone').value
+            }).then(response => alert('Authentication successful!'))
+              .catch(error => console.log(error))
+        }
+    
+        document.getElementById('login-form').addEventListener('submit', login)
+    </script>
+    </x-slot>
 </x-guest-layout>

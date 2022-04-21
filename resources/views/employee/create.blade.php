@@ -88,12 +88,13 @@
                             <input name="add_more" type="submit" class="btn btn-primary" value="Create & Add More" >
                         </div>
                         <div>
-                            @if(session("success"))
-                                <h6 class="my-2 text-success">
-                                    {{ session("success") }}
-                                </h6>
-                            @endif
+                            
                             <ul>
+                                @if(session("success"))
+                                <li class="my-2 text-success">
+                                    {{ session("success") }}
+                                </li>
+                                @endif
                                 @if($errors->any())
                                     {!! implode('', $errors->all('<li class="text-danger">:message</li>')) !!}
                                 @endif

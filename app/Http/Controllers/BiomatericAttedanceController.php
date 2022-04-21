@@ -12,6 +12,9 @@ use Illuminate\Support\Facades\Crypt;
 class BiomatericAttedanceController extends Controller
 {
     public function login (){
+        if (auth('biomateric_attedance')->user()){
+            return redirect('/check-users');
+        }
         return view('bioattendance.login');
     }
     
@@ -117,4 +120,19 @@ class BiomatericAttedanceController extends Controller
     {
         return 'machine_id';
     }
+
+    public function passwordCheck(){
+        if(Auth::guard('biomateric_attedance')->attempt(['machine_id'=>request('machine_id'),'password'=>request('password')])){
+            $this->logout();
+        }else{
+            return ['error'=>'Error login'];
+        }
+    }
+
+
+    public function logout(){
+        auth('biomateric_attedance')->logout();
+        return ['success'=>'Logout Complete'];
+    }
+
 }

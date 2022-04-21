@@ -23,6 +23,6 @@
 
     </div>
 
-
+    <x-slot name="script"></x-slot>
 
 </x-guest-layout>

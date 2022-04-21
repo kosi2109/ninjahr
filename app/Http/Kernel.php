@@ -2,6 +2,7 @@
 
 namespace App\Http;
 
+use App\Http\Middleware\BioGuess;
 use App\Http\Middleware\BiomatericAttendance;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
@@ -66,5 +67,6 @@ class Kernel extends HttpKernel
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'permission' => \Spatie\Permission\Middlewares\PermissionMiddleware::class,
         'bio' => BiomatericAttendance::class,
+        'bio-guest' => BioGuess::class,
     ];
 }
