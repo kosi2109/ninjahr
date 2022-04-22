@@ -26,7 +26,7 @@
                         <div class="row">
                             @foreach ($project->leaders as $leader)
                                 <div class="col-3">
-                                    <img src="/storage/{{$leader->profile_img}}" class="rounded-circle" style="width: 50px;height:50px" alt="img">
+                                    <img src="{{$leader->profile_img}}" class="rounded-circle" style="width: 50px;height:50px" alt="img">
                                 </div>
                             @endforeach
                         </div>
@@ -38,7 +38,7 @@
                         <div class="row">
                             @foreach ($project->members as $member)
                                 <div class="col-3">
-                                    <img src="/storage/{{$member->profile_img}}" class="rounded-circle" style="width: 50px;height:50px" alt="img">
+                                    <img src="{{$member->profile_img}}" class="rounded-circle" style="width: 50px;height:50px" alt="img">
                                 </div>
                             @endforeach
                         </div>
@@ -50,7 +50,7 @@
                         <div class="row" id="images">
                             @foreach ($project->images as $image)
                                 <div class="col-3">
-                                    <img style="cursor: pointer" src="/storage/{{$image}}" alt="img" width="100%">
+                                    <img style="cursor: pointer" src="{{$image}}" alt="img" width="100%">
                                 </div>
                             @endforeach
                         </div>
@@ -62,7 +62,7 @@
                         <div class="row">
                             @foreach ($project->files as $file)
                                 <div class="col-3">
-                                    <a href="/storage/{{$file}}" target="_blank">
+                                    <a href="{{$file}}" target="_blank">
                                         <div class="border text-center p-2 rounded-2 text-primary fs-3">
                                             <i class="fa-solid fa-file-pdf"></i>
                                         </div>

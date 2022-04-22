@@ -2,16 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\EmployeeRequest;
-use App\Http\Requests\EmployeeUpdateRequest;
-use App\Models\Department;
-use App\Models\User;
 use Carbon\Carbon;
+use App\Models\User;
+use App\Models\Department;
 use Illuminate\Http\Request;
-use Spatie\Permission\Models\Role;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rule;
 use Yajra\Datatables\Datatables;
+use Spatie\Permission\Models\Role;
+use Illuminate\Support\Facades\Hash;
+use App\Http\Requests\EmployeeRequest;
+use App\Http\Requests\EmployeeUpdateRequest;
+use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
+
 
 class EmployeeController extends Controller
 {
@@ -31,7 +33,7 @@ class EmployeeController extends Controller
             });
         })
         ->editColumn('profile_img',function($each){
-            return "<div class='d-flex flex-column justify-content-center align-items-center'><img src='/storage/". $each->profile_img ."' alt='' class='profile-thumb' /> <p>".$each->name."</p></div>";
+            return "<div class='d-flex flex-column justify-content-center align-items-center'><img src='". $each->profile_img ."' alt='' class='profile-thumb' /> <p>".$each->name."</p></div>";
         })
         ->addColumn('department_name',function($each){
             return $each->department ? $each->department->title : "-";
@@ -90,7 +92,7 @@ class EmployeeController extends Controller
         
         $image = null;
         if(request()->hasFile('profile_img')){
-            $image = request()->file('profile_img')->store('employee');
+            $image = Cloudinary::upload(request()->file('profile_img')->getRealPath())->getSecurePath();
         }
         
         $request->password = Hash::make($request->password);
@@ -121,11 +123,13 @@ class EmployeeController extends Controller
         ]);
     }
     
-    public function update(EmployeeUpdateRequest $request,User $user){
+    public function update(EmployeeUpdateRequest $request,User $user){        
         if(request()->hasFile('profile_img')){
-            $image = request()->file('profile_img')->store('employee');
+            $image = Cloudinary::upload(request()->file('profile_img')->getRealPath())->getSecurePath();
             $user->profile_img = $image;
         }
+
+        
         
         if(isset($request->password)){
             $user->password = Hash::make($request->password) ;

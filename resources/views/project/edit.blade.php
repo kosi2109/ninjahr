@@ -33,7 +33,7 @@
                     <div class="row mb-3">
                         @foreach ($project->images as $image)
                         <div class="col-md-3">
-                            <img src="/storage/{{$image}}" width="100%" alt="some" />
+                            <img src="{{$image}}" width="100%" alt="some" />
                         </div>
                         @endforeach
                     </div>
@@ -46,7 +46,7 @@
                     <div class="row mb-3">
                         @foreach ($project->files as $file)
                         <div class="col-md-2">
-                            <a href="/storage/{{$file}}" target="_black" class="bg-primary">
+                            <a href="{{$file}}" target="_black" class="bg-primary">
                                 <div class="border text-center p-2 rounded-2 text-primary fs-3">
                                     <i class="fa-solid fa-file-pdf"></i>
                                 </div>

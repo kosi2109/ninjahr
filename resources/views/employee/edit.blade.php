@@ -27,7 +27,7 @@
                         <x-form.input name="profile_img" type="file" value="{{$employee->profile_img}}" />
 
                         <div id="preview_img" class="d-flex justify-content-center align-items-center mb-3" style="width: 100%">
-                            <img src="{{"/storage/".$employee->profile_img}}" alt="preview" style="max-width:100%;height:auto;">
+                            <img src="{{$employee->profile_img}}" alt="preview" style="max-width:100%;height:auto;">
                         </div>
                         <div class="mb-3">
                             <label for="gender" class="form-label">Gender</label>

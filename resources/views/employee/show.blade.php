@@ -31,7 +31,7 @@
         <div class="row">
             <div class="col-md-4 mb-3">
                 <div style="width: 100%;">
-                    <img style="border-radius: 5px" class="shadow" width="100%" src="{{"/storage/".$user->profile_img}}" alt="{{$user->employee_id}}">
+                    <img style="border-radius: 5px" class="shadow" width="100%" src="{{$user->profile_img}}" alt="{{$user->employee_id}}">
                 </div>
             </div>
             <div class="col-md-8">

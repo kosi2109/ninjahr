@@ -22,7 +22,7 @@
         </div>
         <div class="d-flex align-items-center">
             @foreach ($task->members as $member)
-            <img src="/storage/{{$member->profile_img}}" alt="img" class="rounded-circle bg-danger" style="width: 20px;height:20px;margin-left:-5px" />
+            <img src="{{$member->profile_img}}" alt="img" class="rounded-circle bg-danger" style="width: 20px;height:20px;margin-left:-5px" />
             @endforeach
         </div>
     </div>

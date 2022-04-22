@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\ProjectRequest;
+use App\Models\User;
 use App\Models\Project;
+use Illuminate\Support\Str;
 use App\Models\ProjectLeader;
 use App\Models\ProjectMember;
-use App\Models\User;
+use App\Http\Requests\ProjectRequest;
 use Yajra\DataTables\Facades\DataTables;
-use Illuminate\Support\Str;
+use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
 
 class ProjectController extends Controller
 {
@@ -34,14 +35,14 @@ class ProjectController extends Controller
         ->addColumn('leaders',function($each){
             $img = "";
             foreach($each->leaders as $leader){
-                $img .= "<img src='storage/$leader->profile_img' alt='img' class='rounded-circle shadow-sm me-1' width='30' height='30' />";
+                $img .= "<img src='$leader->profile_img' alt='img' class='rounded-circle shadow-sm me-1' width='30' height='30' />";
             }
             return $img;
         })
         ->addColumn('members',function($each){
             $img = "";
             foreach($each->members as $member){
-                $img .= "<img src='storage/$member->profile_img' alt='img' class='rounded-circle shadow-sm me-1' width='30' height='30' />";
+                $img .= "<img src='$member->profile_img' alt='img' class='rounded-circle shadow-sm me-1' width='30' height='30' />";
             }
             return $img;
         })
@@ -94,7 +95,7 @@ class ProjectController extends Controller
         if(request()->hasFile('images')){
             
             foreach ($request->images as $image){
-                $images[] = $image->store('project/images');
+                $images[] = Cloudinary::upload($image->getRealPath())->getSecurePath();
             }
             
         }
@@ -103,7 +104,7 @@ class ProjectController extends Controller
         if(request()->hasFile('files')){
             
             foreach (request()->file('files') as $file){
-                $files[] = $file->store('project/files');
+                $files[] = Cloudinary::uploadFile($file->getRealPath())->getSecurePath();
             }
         }
         
@@ -141,7 +142,7 @@ class ProjectController extends Controller
         if(request()->hasFile('images')){
             $images = [];
             foreach (request()->file('images') as $image){
-                $images[] = $image->store('project/images');
+                $images[] = Cloudinary::upload($image->getRealPath())->getSecurePath();
             }
             $project->images = $images;
         }
@@ -150,7 +151,7 @@ class ProjectController extends Controller
         if(request()->hasFile('files')){
             $files = [];
             foreach (request()->file('files') as $file){
-                $files[] = $file->store('project/files');
+                $files[] = Cloudinary::uploadFile($file->getRealPath())->getSecurePath();
             }
             $project->files = $files;
         }

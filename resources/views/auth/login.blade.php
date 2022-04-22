@@ -1,6 +1,6 @@
 <x-guest-layout>
     <x-slot name="title">Login</x-slot>
-    <div class="col-md-4 m-auto card px-5 py-3 shadow" style="height: 55vh">
+    <div class="col-md-4 m-auto card px-5 py-3 shadow" style="min-height: 55vh">
         <x-application-logo/> 
 
 

@@ -12,6 +12,7 @@ use Carbon\CarbonPeriod;
 class PayrollController extends Controller
 {
     public function payroll(){
+        
         return view('payroll.overview');
     }
 
