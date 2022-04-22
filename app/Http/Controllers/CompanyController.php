@@ -30,6 +30,6 @@ class CompanyController extends Controller
         };
 
         $company->save();
-        return redirect('/company/1/show')->with('success','Company Settings updated successfully.');
+        return redirect('/company')->with('success','Company Settings updated successfully.');
     }
 }
