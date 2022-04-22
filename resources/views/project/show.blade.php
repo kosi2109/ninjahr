@@ -91,6 +91,6 @@
             var members = @json($project->members);
             var pjId = {{$project->id}}
         </script>
-        <script src={{asset('js/projectShow.js')}}></script>
+        <script src="js/projectShow.js"></script>
     </x-slot>
 </x-app-layout>

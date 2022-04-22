@@ -5,7 +5,7 @@
     <div class="row py-4">
       <div class="shadow card text-center p-3 mb-2">
           <div class="d-flex justify-content-center p-3">
-              <img class="text-primary" src="{{asset('images/qr.svg')}}" alt="qr" style="max-width: 80%">
+              <img class="text-primary" src="images/qr.svg" alt="qr" style="max-width: 80%">
           </div>
           <h6>Please scan qr for CheckIn & CheckOut</h6>
           <button type="button" data-bs-toggle="modal" data-bs-target="#qrmodal" class="btn btn-primary btn-sm mt-2" style="width: 120px;align-self:center">Scan</button>
@@ -51,6 +51,6 @@
   </div>
 
     <x-slot name="script">
-        <script src="{{asset('js/attendance.js')}}"></script>
+        <script src="js/attendance.js"></script>
     </x-slot>
 </x-app-layout>
