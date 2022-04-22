@@ -9,7 +9,7 @@
 
     <div class="d-flex align-items-center p-2" style="width: 100%">
         <div class="me-3 rounded-2 overflow-hidden">
-            <img width="70" src="storage/{{auth()->user()->profile_img}}" alt="">
+            <img width="70" src="{{auth()->user()->profile_img}}" alt="">
         </div>
         <div class="d-flex flex-column justify-content-center">
             <h6>{{auth()->user()->employee_id}}</h6>

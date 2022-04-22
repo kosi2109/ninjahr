@@ -6,6 +6,6 @@
     @if ($type == "textarea")
         <textarea name="{{$name}}" class="form-control" id="{{$name}}">{{$value}}</textarea>
     @else
-        <input value="{{$value}}" name="{{$name}}" type="{{$type}}" class="form-control" id="{{$name}}">
+        <input autocomplete="off" value="{{$value}}" name="{{$name}}" type="{{$type}}" class="form-control" id="{{$name}}">
     @endif
 </div>   

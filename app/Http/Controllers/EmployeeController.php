@@ -95,7 +95,7 @@ class EmployeeController extends Controller
             $image = Cloudinary::upload(request()->file('profile_img')->getRealPath())->getSecurePath();
         }
         
-        $request->password = Hash::make($request->password);
+        $request->password = bcrypt($request->password);
         
         $newUser = new User();
         foreach ($request->all() as $key=>$value){
@@ -129,8 +129,6 @@ class EmployeeController extends Controller
             $user->profile_img = $image;
         }
 
-        
-        
         if(isset($request->password)){
             $user->password = Hash::make($request->password) ;
         };

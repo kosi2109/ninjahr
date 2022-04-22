@@ -27,7 +27,7 @@
                 @enderror
             </div>
             
-            <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+            <div class="tab-pane fade mb-1" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
                 <form action="POST" id="login-form">
                     @csrf
 
