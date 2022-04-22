@@ -24,7 +24,7 @@ class BiomatericAttedanceController extends Controller
             "password" => "required"
         ]);
       
-        if(Auth::guard('biomateric_attedance')->attempt(['machine_id'=>$formData['machine_id'],'password'=>$formData['password']])){
+        if(auth('biomateric_attedance')->attempt(['machine_id'=>$formData['machine_id'],'password'=>$formData['password']])){
             return redirect('/check-users');
         }else{
             return back()->with('error','Someting Went Wrong');

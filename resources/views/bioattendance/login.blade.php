@@ -5,13 +5,13 @@
             @csrf
             <h4 class="text-center text-lg mb-3">Login For Biometric Machine</h4>
             <x-form.input name='machine_id' />
-            <x-form.input name='password' />
+            <x-form.input name='password' type="password" />
             <button class="btn btn-primary">Next</button>
             <div class="mt-2">
                 <a href="/login">Login for employee.</a>
             </div>
         </form>
-        <ul>
+            <ul>
             @if($errors->any())
                 {!! implode('', $errors->all('<li class="text-danger">:message</li>')) !!}
             @endif
