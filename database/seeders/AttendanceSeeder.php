@@ -17,6 +17,7 @@ class AttendanceSeeder extends Seeder
     public function run()
     {
         $users = User::all();
+        Attendance::truncate();
         foreach($users as $user){
             $period = new CarbonPeriod('2021-04-01','2021-04-21');
             foreach($period as $p){
