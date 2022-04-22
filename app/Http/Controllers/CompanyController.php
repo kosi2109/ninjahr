@@ -23,7 +23,7 @@ class CompanyController extends Controller
 
     public function update(CompanyRequest $request,Company $company){
 
-        foreach($request as $key=>$value){
+        foreach($request->all() as $key=>$value){
             $company->$key = $value;
         };
 
