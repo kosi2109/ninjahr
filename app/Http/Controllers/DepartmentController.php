@@ -53,9 +53,7 @@ class DepartmentController extends Controller
     }
     
     public function update(DepartmentRequest $request , Department $department){
-        foreach($request as $key=>$value){
-            $department->$key = $value;
-        };
+        $department->title = $request->title;
         
         $department->save();
         return redirect('/department')->with("success","Role has been successfully updated .");
