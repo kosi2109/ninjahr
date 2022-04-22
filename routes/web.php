@@ -47,7 +47,7 @@ Route::middleware("auth")->group(function(){
     // profile
     Route::delete('biodata/{id}/delete',[ProfileController::class,"bioDestroy"]);
     Route::get('/',[ProfileController::class,"show"]);
-    Route::get('profile/bio-data',[ProfileController::class,"bioData"])->middleware('permission:view_profile');
+    Route::get('profile/bio-data',[ProfileController::class,"bioData"]);
 
     // employee
     Route::get('employee',[EmployeeController::class,"index"])->middleware('permission:view_employee');
@@ -89,7 +89,7 @@ Route::middleware("auth")->group(function(){
     
     
     // company
-    Route::get('company/{company}/show',[CompanyController::class,"show"])->middleware('permission:view_company');
+    Route::get('company',[CompanyController::class,"show"])->middleware('permission:view_company');
     Route::get('company/{company}/edit',[CompanyController::class,"edit"])->middleware('permission:edit_company');
     Route::post('company/{company}/update',[CompanyController::class,"update"])->middleware('permission:edit_company');
 

@@ -161,7 +161,7 @@ class AttendanceController extends Controller
 
         $period = new CarbonPeriod($start_date,$end_date);
         $employees = User::orderBy('employee_id')->where('employee_id','like','%'.request('employee_id').'%')->get();
-        $attendances = Attendance::whereMonth('date',$month)->whereYear('date',$year)->get();
+        $attendances = Attendance::whereBetween('date', [$start_date, $end_date])->get();
         $company = Company::first();
         return view('components.attendanceTable',[
             'period'=>$period,

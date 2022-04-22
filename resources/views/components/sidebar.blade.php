@@ -24,7 +24,7 @@
         </li>
         @can('view_company')
         <li>
-            <a href="/company/1/show"><i class="fa-solid fa-building"></i> Company</a>
+            <a href="/company"><i class="fa-solid fa-building"></i> Company</a>
         </li>
         @endcan
         @can('view_employee')

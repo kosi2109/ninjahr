@@ -9,7 +9,7 @@
     <!-- CSS only -->
     
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-    <link rel="stylesheet" href="css/bootstrap-pin.css">
+    <link rel="stylesheet" href="/css/bootstrap-pin.css">
     {{-- datatable --}}
     <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/dataTables.bootstrap5.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.9/css/responsive.dataTables.min.css">
@@ -19,8 +19,8 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/viewerjs/1.10.5/viewer.css" integrity="sha512-c7kgo7PyRiLnl7mPdTDaH0dUhJMpij4aXRMOHmXaFCu96jInpKc8sZ2U6lby3+mOpLSSlAndRtH6dIonO9qVEQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-    <link rel="stylesheet" href="css/app.css">
-    <link rel="stylesheet" href="css/datatables/datatables.mark.css">
+    <link rel="stylesheet" href="/css/app.css">
+    <link rel="stylesheet" href="/css/datatables/datatables.mark.css">
     {{-- select2 --}}
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" />
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.2.0/dist/select2-bootstrap-5-theme.min.css" />
@@ -44,12 +44,12 @@
     {{-- datatable --}}
     {{-- <script src="https://cdn.datatables.net/responsive/2.2.9/js/dataTables.responsive.min.js"></script>
     <script src="https://cdn.datatables.net/rowreorder/1.2.8/js/dataTables.rowReorder.min.js"></script> --}}
-    <script src="js/datatable/dataTables.min.js"></script>
-    <script src="js/datatable/dataTables.responsive.min.js"></script>
-    <script src="js/datatable/dataTables.rowReorder.min.js"></script>
-    <script src="js/datatable/datatables.mark.js"></script>
-    <script src="js/datatable/jquery.mark.min.js"></script>
-    <script src="js/qr-scanner.umd.min.js"></script>
+    <script src="/js/datatable/dataTables.min.js"></script>
+    <script src="/js/datatable/dataTables.responsive.min.js"></script>
+    <script src="/js/datatable/dataTables.rowReorder.min.js"></script>
+    <script src="/js/datatable/datatables.mark.js"></script>
+    <script src="/js/datatable/jquery.mark.min.js"></script>
+    <script src="/js/qr-scanner.umd.min.js"></script>
 
     <script src="https://cdn.datatables.net/1.11.5/js/dataTables.bootstrap5.min.js"></script>
     {{-- sweetaleart --}}
@@ -58,13 +58,13 @@
     {{-- select2 --}}
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     
-    <script src="vendor/larapass/js/larapass.js"></script>
+    <script src="/vendor/larapass/js/larapass.js"></script>
     
     <script src="https://cdnjs.cloudflare.com/ajax/libs/viewerjs/1.10.5/viewer.min.js" integrity="sha512-i5q29evO2Z4FHGCO+d5VLrwgre/l+vaud5qsVqQbPXvHmD9obORDrPIGFpP2+ep+HY+z41kAmVFRHqQAjSROmA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.15.0/Sortable.min.js" integrity="sha512-Eezs+g9Lq4TCCq0wae01s9PuNWzHYoCMkE97e2qdkYthpI0pzC3UGB03lgEHn2XM85hDOUF6qgqqszs+iXU4UA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
-    <script src="js/bootstrap-pin.js"></script>
+    <script src="/js/bootstrap-pin.js"></script>
     
     
     {{$script}}

@@ -8,7 +8,8 @@ use Illuminate\Http\Request;
 
 class CompanyController extends Controller
 {
-    public function show(Company $company){
+    public function show(){
+        $company = Company::first();
         return view('company.show',[
             'company'=>$company
         ]);

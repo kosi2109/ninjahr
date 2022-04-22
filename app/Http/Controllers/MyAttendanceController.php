@@ -31,7 +31,7 @@ class MyAttendanceController extends Controller
 
         $period = new CarbonPeriod($start_date,$end_date);
         $employees = User::where('id',auth()->id())->get();
-        $attendances = Attendance::whereMonth('date',$month)->whereYear('date',$year)->get();
+        $attendances = Attendance::whereBetween('date', [$start_date, $end_date])->get();
         $company = Company::first();
         return view('components.attendanceTable',[
             'period'=>$period,
@@ -55,7 +55,10 @@ class MyAttendanceController extends Controller
             $year = Carbon::now()->format('Y');
         }
 
-        $attendance = Attendance::with('user')->where('user_id',auth()->id())->whereMonth('date',$month)->whereYear('date',$year);
+        $start_date = $year . '-' . $month . '-01';
+        $end_date = Carbon::parse($start_date)->endOfMonth()->format('Y-m-d');
+
+        $attendance = Attendance::with('user')->where('user_id',auth()->id())->whereBetween('date', [$start_date, $end_date])->get();
         return DataTables::of($attendance)
         ->editColumn('user_id',function ($each){
             return $each->user ? $each->user->name : '-';
@@ -87,7 +90,7 @@ class MyAttendanceController extends Controller
 
         $period = new CarbonPeriod($start_date,$end_date);
         $employees = User::orderBy('employee_id')->where('employee_id',auth()->user()->employee_id)->get();
-        $attendances = Attendance::whereMonth('date',$month)->whereYear('date',$year)->get();
+        $attendances = Attendance::whereBetween('date', [$start_date, $end_date])->get();;
         $company = Company::first();
         
         return view('components.payrollTable',[

@@ -103,7 +103,7 @@
                         order: [[ 0, 'desc' ]],
                         
                     });
-                    getTable({{now()->format('m')}},{{now()->format('Y')}})
+                    getTable(month,year)
                     getPayrollTable(month,year)
 
                     $('#searchBtn').click(function(){

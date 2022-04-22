@@ -19,7 +19,7 @@ class SalaryController extends Controller
         $salary = Salary::with('user');
         return DataTables::of($salary)
         ->editColumn('user_id',function($each){
-            return $each->user->employee_id;
+            return $each->user ? $each->user->employee_id : "-" ;
         })
         ->addColumn('action',function($each){
             $eidt = "<a href='/salary/". $each->id ."/edit' class='text-decoration-none'>
