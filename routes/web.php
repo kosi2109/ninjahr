@@ -11,6 +11,7 @@ use App\Http\Controllers\RoleController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\WebAuthnRegisterController;
 use App\Http\Controllers\Auth\WebAuthnLoginController;
+use App\Http\Controllers\BioMachineController;
 use App\Http\Controllers\BiomatericAttedanceController;
 use App\Http\Controllers\MyAttendanceController;
 use App\Http\Controllers\MyProjectController;
@@ -149,6 +150,15 @@ Route::middleware("auth")->group(function(){
     Route::post('task/{task}/move',[TaskController::class,"move"]);
     Route::post('task/sort',[TaskController::class,"sort"]);
 
+
+     //     bio_machine
+     Route::get('bio-machine',[BioMachineController::class,"index"])->middleware('permission:view_biomachine');
+     Route::get('bio-machine/create',[BioMachineController::class,"create"])->middleware('permission:create_biomachine');
+     Route::post('bio-machine/store',[BioMachineController::class,"store"])->middleware('permission:create_biomachine');
+     Route::get('bio-machine/{bio_machine}/edit',[BioMachineController::class,"edit"])->middleware('permission:edit_biomachine');
+     Route::post('bio-machine/{bio_machine}/update',[BioMachineController::class,"update"])->middleware('permission:edit_biomachine');
+     Route::delete('bio-machine/{bio_machine}/delete',[BioMachineController::class,"destroy"])->middleware('permission:delete_biomachine');
+     Route::get('bio-machine/database/ssd',[BioMachineController::class,"ssd"])->middleware('permission:view_biomachine|create_biomachine|edit_biomachine|delete_biomachine');
 });
 
 

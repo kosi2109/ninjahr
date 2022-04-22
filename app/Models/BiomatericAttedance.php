@@ -13,13 +13,6 @@ class BiomatericAttedance extends Authenticatable
     protected $guard = 'biomateric_attedance';
     protected $guarded = [];
     protected $hidden = [
-        'password', 'remember_token',
+        'remember_token'
     ];
-
-
-    public function setPasswordAttribute($password){
-        return $this->attributes['password'] = bcrypt($password);
-    }
-
-
 }

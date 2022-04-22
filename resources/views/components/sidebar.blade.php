@@ -27,6 +27,11 @@
             <a href="/company"><i class="fa-solid fa-building"></i> Company</a>
         </li>
         @endcan
+        @can('view_biomachine')
+        <li>
+            <a href="/bio-machine"><i class="fa-solid fa-check-to-slot"></i> BioMachine</a>
+        </li>
+        @endcan
         @can('view_employee')
         <li>
             <a href="/employee"><i class="fa-solid fa-user-group"></i> Employee</a>

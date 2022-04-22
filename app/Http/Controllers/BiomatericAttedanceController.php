@@ -23,8 +23,11 @@ class BiomatericAttedanceController extends Controller
             "machine_id" => "required",
             "password" => "required"
         ]);
-      
-        if(auth('biomateric_attedance')->attempt(['machine_id'=>$formData['machine_id'],'password'=>$formData['password']])){
+        
+        $machine = BiomatericAttedance::where('machine_id',$formData['machine_id'])->where('password',$formData['password'])->first();
+        
+        if($machine){
+            Auth::guard('biomateric_attedance')->login($machine);
             return redirect('/check-users');
         }else{
             return back()->with('error','Someting Went Wrong');
@@ -122,7 +125,9 @@ class BiomatericAttedanceController extends Controller
     }
 
     public function passwordCheck(){
-        if(Auth::guard('biomateric_attedance')->attempt(['machine_id'=>request('machine_id'),'password'=>request('password')])){
+        $machine = BiomatericAttedance::where('machine_id',request('machine_id'))->where('password',request('password'))->first();
+
+        if($machine){
             $this->logout();
         }else{
             return ['error'=>'Error login'];
