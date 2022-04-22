@@ -24,7 +24,7 @@ class CompanyController extends Controller
     public function update(CompanyRequest $request,Company $company){
 
         foreach($request->all() as $key=>$value){
-            if($key != "role_id"){
+            if($key != "_token"){
                 $company->$key = $value;
             }
         };
